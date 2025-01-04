@@ -1,5 +1,6 @@
 import './App.css';
 import Img from './assets/profissao-programador.jpg'
+import SendIcon from './assets/send.png'
 
 function App() {
   return (
@@ -16,6 +17,25 @@ function App() {
             </div>
           </div>
         </div>
+
+        <div className='chat-messages'>
+          <div className='chat-options'>
+            <div className='chat-item'>
+              <img src={Img} alt='' className='image-profile' />
+              <div className='title-chat-container'>
+                <span className='title-message'>NetWorking Profissão Programador</span>
+                <span className='last-message'>Flaviano, Paulo, Marcio...</span>
+              </div>
+            </div>
+          </div>
+
+          <div className='chat=messages-area'></div>
+          <div className='chat-input-area'>
+            <input type='text' className='chat-input' placeholder='Digite sua mensagem...' />
+            <img className='send-message-icon' src={SendIcon} alt='' />
+          </div>
+        </div>
+        
       </div>
     </div>
   );
