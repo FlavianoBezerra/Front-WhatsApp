@@ -1,8 +1,16 @@
+import { useEffect } from 'react';
 import './App.css';
-import Img from './assets/profissao-programador.jpg'
-import SendIcon from './assets/send.png'
+import Img from './assets/profissao-programador.jpg';
+import SendIcon from './assets/send.png';
+import socket from 'socket.io-client';
+
+const io = socket('http://localhost:4000');
 
 function App() {
+  useEffect(() => {
+    io.emit('join', 'Um usuàrio entrou');
+  }, []);
+
   return (
     <div className="container">
       <div className='back-ground'></div>
