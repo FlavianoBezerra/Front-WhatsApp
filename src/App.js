@@ -21,6 +21,16 @@ function App() {
     }
   }
 
+  if(!joined){
+    return (
+      <div>
+        <span>Digite seu nome</span>
+        <input value={name} onChange={(e) => setName( e.target.value )} />
+        <button onClick={() => handleJoin()}>Entrar</button>
+      </div>
+    )
+  }
+
   return (
     <div className='container'>
       <div className='back-ground'></div>
