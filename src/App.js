@@ -14,6 +14,13 @@ function App() {
     io.emit( "join", 'Flaviano' );
   }, []);
 
+  const handleJoin = () => {
+    if(name){
+      io.emit( "join", name );
+      setJoined(true);
+    }
+  }
+
   return (
     <div className='container'>
       <div className='back-ground'></div>
