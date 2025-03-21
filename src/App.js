@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import Img from './assets/profissao-programador.jpg';
 import SendIcon from './assets/send.png';
@@ -7,12 +7,15 @@ import socket from 'socket.io-client';
 const io = socket('http://localhost:4000');
 
 function App() {
+  const [ name, setName  ] = useState("");
+  const [ joined, setJoined ] = useState(false);
+
   useEffect(() => {
-    io.emit('join', 'Um usuàrio entrou');
+    io.emit( "join", 'Flaviano' );
   }, []);
 
   return (
-    <div className="container">
+    <div className='container'>
       <div className='back-ground'></div>
       <div className='chat-container'>
         <div className='chat-contacts'>
