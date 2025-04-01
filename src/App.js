@@ -10,15 +10,33 @@ function App() {
   const [ name, setName  ] = useState("");
   const [ joined, setJoined ] = useState(false);
   const [ users, setUsers ] = useState([]);
+  const [ message, setMessage ] = useState("");
+  const [ messages, setMessages ] = useState([]);
 
   useEffect(() => {
     io.on("users", (users) => setUsers(users));
+    io.on("message", (message) => {
+      setMessages((prevMessages) => {
+        if (!prevMessages.some(msg => msg.id === message.id)) {
+          return [...prevMessages, message];
+        }
+        return prevMessages;
+      });
+    });
   }, []);
 
   const handleJoin = () => {
     if(name){
       io.emit( "join", name );
       setJoined(true);
+    }
+  }
+
+  const handleMessage = () => {
+    if(message){
+      const newMessage = { id: Date.now(), message, name }; //timestamp
+      io.emit("message", newMessage);
+      setMessage("");
     }
   }
 
@@ -62,10 +80,21 @@ function App() {
             </div>
           </div>
 
-          <div className='chat=messages-area'></div>
+          <div className='chat-messages-area'>
+            {messages.map((message, index) => (
+              <span key={index}>{message.name? `${message.name}: ` : ''} {message.message}</span>
+            ))}
+          </div>
+
           <div className='chat-input-area'>
-            <input type='text' className='chat-input' placeholder='Digite sua mensagem...' />
-            <img className='send-message-icon' src={SendIcon} alt='' />
+            <input
+              type='text'
+              className='chat-input'
+              placeholder='Digite sua mensagem...'
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            />
+            <img className='send-message-icon' src={SendIcon} alt='' onClick={() => handleMessage()} />
           </div>
         </div>
         
