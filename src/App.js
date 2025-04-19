@@ -82,7 +82,11 @@ function App() {
 
           <div className='chat-messages-area'>
             {messages.map((message, index) => (
-              <span key={index}>{message.name? `${message.name}: ` : ''} {message.message}</span>
+              <div className={message.name === name? 'user-container-message right' : 'user-container-message left'}>
+                <span key={index} className={message.name === name? 'user-my-message' : 'user-other-message'}>
+                  {message.name? `${message.name}: ` : ''} {message.message}
+                </span>
+              </div>
             ))}
           </div>
 
