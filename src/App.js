@@ -60,7 +60,9 @@ function App() {
             <img src={Img} alt='' className='image-profile' />
             <div className='title-chat-container'>
               <span className='title-message'>NetWorking Profissão Programador</span>
-              <span className='last-message'>Flaviano: Bom dia!</span>
+              <span className='last-message'>
+                {messages.length? `${messages[messages.length - 1].name}: ${messages[messages.length - 1].message}` : ''}
+              </span>
             </div>
           </div>
         </div>
