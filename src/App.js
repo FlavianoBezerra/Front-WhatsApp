@@ -42,10 +42,18 @@ function App() {
 
   if(!joined){
     return (
-      <div>
-        <span>Digite seu nome</span>
-        <input value={name} onChange={(e) => setName( e.target.value )} />
-        <button onClick={() => handleJoin()}>Entrar</button>
+      <div className="background-container">
+        <div className="join-container">
+          <span className="join-prompt">Digite seu nome</span>
+          <input 
+            className="name-input" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
+          />
+          <button className="join-button" onClick={() => handleJoin()}>
+            Entrar
+          </button>
+        </div>
       </div>
     )
   }
